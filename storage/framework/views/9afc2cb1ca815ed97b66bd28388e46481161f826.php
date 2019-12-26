@@ -1,6 +1,5 @@
-
-@section('title', 'Login')
-@include('main')
+<?php $__env->startSection('title', 'Login'); ?>
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <body class="cat__pages__login">
 <!-- START: pages/login -->
 <div class="cat__pages__login cat__pages__login--fullscreen" style="background-image: url(dist/modules/pages/common/img/login/1.jpg)">
@@ -8,7 +7,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="cat__pages__login__block__promo text-white text-center">
-                    <h2 class="mb-">
+                    <h2 class="mb-3">
                         <strong>WELCOME TO EZEELIVE TECHNOLOGIES - ADMIN PANEL</strong>
                     </h2>
                 </div>
@@ -18,40 +17,27 @@
                             <strong>Please log in</strong>
                         </h4>
                         <br />
-						{{-- @if(isset(Auth::user()->email))
-                            <script>window.location="/pages/index"</script> --}}
-                            {{-- <script>window.location="/main/dashboard"</script> --}}
-						{{-- @endif --}}
-						@if($message = Session::get('error'))
+						<?php if(isset(Auth::user()->email)): ?>
+							<script>window.location="/main/dashboard"</script>
+						<?php endif; ?>
+						<?php if($message = Session::get('error')): ?>
 							<div class="alert alert-danger alert-block">
 								<button type="button" class="close" data-dismiss="alert">x</button>
-								<strong>{{ $message }}</strong>
+								<strong><?php echo e($message); ?></strong>
 							</div>	
-						@endif		
-						@if (count($errors)>0)
+						<?php endif; ?>		
+						<?php if(count($errors)>0): ?>
 							<div class="alert alert-danger">
 								<ul>
-									@foreach($errors->all() as $error)
-										<li>{{ $error }}</li>
-									@endforeach	
+									<?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+										<li><?php echo e($error); ?></li>
+									<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>	
 								</ul>
 							</div>
-                        @endif	
-                        
-                        @if (count($errors) > 0)
-                            <div class="alert-danger">
-                                @foreach ($errors->all() as $item)
-                                    {{$item}}<br>
-                                @endforeach
-                            </div>
-                        @endif
-                        @if (session('thongbao'))
-                            <div class="alert alert-success">{{session('thongbao')}}</div>
-                        @endif
-                        <form id="form-validation" name="form-validation" method="POST" action="dangnhap">
-                        {{-- <form id="form-validation" name="form-validation" method="POST" action="{{ route('login') }}"> --}}
-                            {{-- {{ csrf_field() }} --}}
-                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+						<?php endif; ?>	
+                        <form id="form-validation" name="form-validation" method="POST" action="<?php echo e(route('login')); ?>">
+						<?php echo e(csrf_field()); ?>
+
                             <div class="form-group">
                                 <label class="form-label">Username</label>
                                 <input id="validation-email"
@@ -71,7 +57,7 @@
                                        placeholder="Password">
                             </div>
                             <div class="form-group">
-                                <a href="{{ url('/password/lost') }}" class="pull-right cat__core__link--blue cat__core__link--underlined">Forgot Password?</a>
+                                <a href="<?php echo e(url('/password/lost')); ?>" class="pull-right cat__core__link--blue cat__core__link--underlined">Forgot Password?</a>
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox"  checked>
@@ -133,4 +119,3 @@
 </script>
 <!-- END: page scripts -->
 </body>
-
