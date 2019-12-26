@@ -15,10 +15,11 @@ class MyMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($request->has('diem') && $request['diem']>=5)
+        if(Auth::check())
+        // if($request->has('diem') && $request['diem']>=5)
             return $next($request);
         else
-        return redirect()->route('loi');
+        return redirect()->route('dangnhap');
 
         //return $next($request);
     }
