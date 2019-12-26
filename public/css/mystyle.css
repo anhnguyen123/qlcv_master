@@ -1,0 +1,24 @@
+.cat__menu-left {
+    background: #006C99;
+}
+
+.cat__menu-left__logo {
+    
+    background: #006C99;
+    
+}
+
+/* @media (min-width: 768px) */
+/* .cat__config--horizontal .cat__menu-left__list--root > li.cat__menu-left__item > a {
+    color: white;
+} */
+body.cat__config--horizontal .cat__menu-left__list--root > li.cat__menu-left__item > a {
+    color: white;
+}
+body.cat__config--horizontal .cat__menu-left__list--root > li.cat__menu-left__item > a > .cat__menu-left__icon {  
+    color: white;
+}
+
+.cat__menu-left__item:hover > a, .cat__menu-left__item:active > a, .cat__menu-left__item:focus > a {
+    background: #5791a9;
+}
