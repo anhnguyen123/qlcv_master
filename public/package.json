@@ -6,7 +6,7 @@
   "private": true,
   "devDependencies": {
     "browser-sync": "latest",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "latest",
     "gulp-concat": "latest",
     "gulp-data": "latest",
